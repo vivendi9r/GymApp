@@ -13,6 +13,31 @@ namespace FitApp.Controllers
             return View();
         }
 
+        public ActionResult News()
+        {
+            return View();
+        }
+
+        public ActionResult Grafik()
+        {
+            return View();
+        }
+
+        public ActionResult Cennik()
+        {
+            return View();
+        }
+
+        public ActionResult Kalkulatory()
+        {
+            return View();
+        }
+
+        public ActionResult Edukacja()
+        {
+            return View();
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

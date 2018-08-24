@@ -10,21 +10,35 @@
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
+    <div class="navbar navbar-expand-sm bg-light navbar-light">
+        <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Nazwa aplikacji", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("FitApp", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
-            <div class="navbar-collapse collapse">
+            <div class="navbar-collapse collapse ">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Strona główna", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Informacje", "About", "Home")</li>
+                    <li class="nav-item">@Html.ActionLink("Aktualności", "News", "Home", new { @class = "nav-link"})</li>
+                    <li>@Html.ActionLink("Grafik", "Grafik", "Home")</li>
+                    <li>@Html.ActionLink("Cennik", "Cennik", "Home")</li>
+                    <li>@Html.ActionLink("Kalkulatory", "Kalkulatory", "Home")</li>
+                    <li>@Html.ActionLink("Edukacja", "Edukacja", "Home")</li>
+                    <li>@Html.ActionLink("O nas", "About", "Home")</li>
                     <li>@Html.ActionLink("Kontakt", "Contact", "Home")</li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Panel Administracyjny
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="#">Dodaj lub edytuj zajęcia</a>
+                            <a class="dropdown-item" href="#">Zarządzaj grafikiem</a>
+                            <a class="dropdown-item" href="#">Zarządzaj kontami klientów</a>
+                        </div>
+                    </li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -34,7 +48,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year — moja aplikacja platformy ASP.NET</p>
+            <p>&copy; @DateTime.Now.Year — Barczik</p>
         </footer>
     </div>
 
