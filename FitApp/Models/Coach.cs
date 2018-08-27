@@ -10,6 +10,7 @@ namespace FitApp.Models
     {
         [Key]
         public int CoachId { get; set; }
+        public string Name { get; set; }
         public int UserId { get; set; }
 
         public ICollection<Activity> Activity { get; set; }

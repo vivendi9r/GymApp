@@ -193,6 +193,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ActivityController.cs" />
+    <Compile Include="Controllers\CoachController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RoomController.cs" />
@@ -206,6 +207,10 @@
     <Compile Include="Migrations\201808231607224_connections.cs" />
     <Compile Include="Migrations\201808231607224_connections.Designer.cs">
       <DependentUpon>201808231607224_connections.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808271545148_add prop to coach.cs" />
+    <Compile Include="Migrations\201808271545148_add prop to coach.Designer.cs">
+      <DependentUpon>201808271545148_add prop to coach.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -336,8 +341,14 @@
     <Content Include="Views\Room\Create.cshtml" />
     <Content Include="Views\Room\Error.cshtml" />
     <Content Include="Views\Room\Delete.cshtml" />
-    <Content Include="Views\Room\Edit.cshtml" />
     <Content Include="Views\Room\Details.cshtml" />
+    <Content Include="Views\Room\Edit.cshtml" />
+    <Content Include="Views\Coach\Error.cshtml" />
+    <Content Include="Views\Coach\Index.cshtml" />
+    <Content Include="Views\Coach\Create.cshtml" />
+    <Content Include="Views\Coach\Delete.cshtml" />
+    <Content Include="Views\Coach\Edit.cshtml" />
+    <Content Include="Views\Coach\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -357,6 +368,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808231607224_connections.resx">
       <DependentUpon>201808231607224_connections.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808271545148_add prop to coach.resx">
+      <DependentUpon>201808271545148_add prop to coach.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

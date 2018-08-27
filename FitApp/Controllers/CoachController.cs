@@ -8,50 +8,50 @@ using System.Web.Mvc;
 
 namespace FitApp.Controllers
 {
-    public class RoomController : Controller
+    public class CoachController : Controller
     {
-        // GET: Room
+        // GET: Coach
         public ActionResult Index()
         {
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
-                var room = db.Rooms.ToList();
-                return View(room);
+                var coach = db.Coachs.ToList();
+                return View(coach);
 
             }
         }
 
-        // GET: Room/Details/5
+        // GET: Coach/Details/5
         public ActionResult Details(int id)
         {
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
-                var room = db.Rooms.Find(id);
-                if (room == null)
+                var coach = db.Coachs.Find(id);
+                if (coach == null)
                     return View("Error");
-                return View(room);
+                return View(coach);
 
             }
         }
 
-        // GET: Room/Create
+        // GET: Coach/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Room/Create
+        // POST: Coach/Create
         [HttpPost]
-        public ActionResult Create(Room room)
+        public ActionResult Create(Coach coach)
         {
             if (!ModelState.IsValid)
             {
-                return View("Create", room);
+                return View("Create", coach);
             }
             else
             {
                 ApplicationDbContext db = new ApplicationDbContext();
-                db.Rooms.Add(room);
+                db.Coachs.Add(coach);
                 db.SaveChanges();
 
                 return RedirectToAction("Index");
@@ -59,65 +59,65 @@ namespace FitApp.Controllers
 
         }
 
-        // GET: Room/Edit/5
+        // GET: Coach/Edit/5
         public ActionResult Edit(int id)
         {
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
-                var room = db.Rooms.Find(id);
-                if (room == null)
+                var coach = db.Coachs.Find(id);
+                if (coach == null)
                     return View("Error");
-                return View(room);
+                return View(coach);
 
             }
 
         }
 
-        // POST: Room/Edit/5
+        // POST: Coach/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, Room room)
+        public ActionResult Edit(int id, Coach coach)
         {
             if (!ModelState.IsValid)
             {
-                return View("Edit", room);
+                return View("Edit", coach);
             }
             else
             {
                 ApplicationDbContext db = new ApplicationDbContext();
-                //db.Rooms.Find(id);
-                db.Entry(room).State = EntityState.Modified;
+                
+                db.Entry(coach).State = EntityState.Modified;
                 db.SaveChanges();
 
                 return RedirectToAction("Index");
             }
         }
 
-        // GET: Room/Delete/5
+        // GET: Coach/Delete/5
         public ActionResult Delete(int id)
         {
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
-                var room = db.Rooms.Find(id);
-                if (room == null)
+                var coach = db.Coachs.Find(id);
+                if (coach == null)
                     return View("Error");
-                return View(room);
+                return View(coach);
 
             }
         }
 
-        // POST: Room/Delete/5
+        // POST: Coach/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, Room room)
+        public ActionResult Delete(int id, Coach coach)
         {
             if (!ModelState.IsValid)
             {
-                return View("Delete", room);
+                return View("Delete", coach);
             }
             else
             {
                 ApplicationDbContext db = new ApplicationDbContext();
-                room = db.Rooms.Find(id);
-                db.Rooms.Remove(room);
+                coach = db.Coachs.Find(id);
+                db.Coachs.Remove(coach);
                 db.SaveChanges();
 
                 return RedirectToAction("Index");

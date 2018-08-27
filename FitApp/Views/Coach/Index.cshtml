@@ -1,7 +1,7 @@
-﻿@model IEnumerable<FitApp.Models.Room>
+﻿@model IEnumerable<FitApp.Models.Coach>
 
 @{
-    ViewBag.Title = "Rooms";
+    ViewBag.Title = "Index";
 }
 
 <h2>Index</h2>
@@ -14,6 +14,7 @@
         <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
+      
         <th></th>
     </tr>
 
@@ -22,10 +23,11 @@
         <td>
             @Html.DisplayFor(modelItem => item.Name)
         </td>
+       
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.RoomId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.RoomId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.RoomId })
+            @Html.ActionLink("Edit", "Edit", new { id=item.CoachId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CoachId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CoachId })
         </td>
     </tr>
 }
