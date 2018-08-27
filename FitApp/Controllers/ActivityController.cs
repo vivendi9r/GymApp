@@ -1,6 +1,7 @@
 ﻿using FitApp.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -23,7 +24,14 @@ namespace FitApp.Controllers
         // GET: Activity/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                var activity = db.Activities.Find(id);
+                if (activity == null)
+                    return View("Error");
+                return View(activity);
+
+            }
         }
 
         // GET: Activity/Create
@@ -76,7 +84,7 @@ namespace FitApp.Controllers
             else
             {
                 ApplicationDbContext db = new ApplicationDbContext();
-                db.Activities.Find(activity);
+                db.Entry(activity).State = EntityState.Modified;
                 db.SaveChanges();
 
                 return RedirectToAction("Index");
@@ -107,6 +115,7 @@ namespace FitApp.Controllers
             else
             {
                 ApplicationDbContext db = new ApplicationDbContext();
+                activity = db.Activities.Find(id);
                 db.Activities.Remove(activity);
                 db.SaveChanges();
 

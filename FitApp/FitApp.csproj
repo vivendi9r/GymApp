@@ -331,8 +331,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Kalkulatory.cshtml" />
     <Content Include="Views\Home\News.cshtml" />
-    <Content Include="Views\Activity\Index.cshtml" />
-    <Content Include="Views\Activity\Create.cshtml" />
     <Content Include="Views\Activity\Delete.cshtml" />
     <Content Include="Views\Activity\Details.cshtml" />
     <Content Include="Views\Activity\Edit.cshtml" />
@@ -349,6 +347,8 @@
     <Content Include="Views\Coach\Delete.cshtml" />
     <Content Include="Views\Coach\Edit.cshtml" />
     <Content Include="Views\Coach\Details.cshtml" />
+    <Content Include="Views\Activity\Index.cshtml" />
+    <Content Include="Views\Activity\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
