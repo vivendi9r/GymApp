@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using FitApp.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace FitApp.Controllers
 {
@@ -20,13 +21,15 @@ namespace FitApp.Controllers
 
         public AccountController()
         {
+
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
         }
+
 
         public ApplicationSignInManager SignInManager
         {

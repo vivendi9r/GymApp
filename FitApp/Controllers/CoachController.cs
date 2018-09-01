@@ -10,6 +10,7 @@ namespace FitApp.Controllers
 {
     public class CoachController : Controller
     {
+
         // GET: Coach
         public ActionResult Index()
         {
@@ -35,12 +36,14 @@ namespace FitApp.Controllers
         }
 
         // GET: Coach/Create
+        [Authorize(Roles = "admin")]
         public ActionResult Create()
         {
             return View();
         }
 
         // POST: Coach/Create
+        [Authorize(Roles = "admin")]
         [HttpPost]
         public ActionResult Create(Coach coach)
         {
@@ -60,6 +63,7 @@ namespace FitApp.Controllers
         }
 
         // GET: Coach/Edit/5
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int id)
         {
             using (ApplicationDbContext db = new ApplicationDbContext())
@@ -74,6 +78,7 @@ namespace FitApp.Controllers
         }
 
         // POST: Coach/Edit/5
+        [Authorize(Roles = "admin")]
         [HttpPost]
         public ActionResult Edit(int id, Coach coach)
         {
@@ -93,6 +98,7 @@ namespace FitApp.Controllers
         }
 
         // GET: Coach/Delete/5
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int id)
         {
             using (ApplicationDbContext db = new ApplicationDbContext())
@@ -106,6 +112,7 @@ namespace FitApp.Controllers
         }
 
         // POST: Coach/Delete/5
+        [Authorize(Roles = "admin")]
         [HttpPost]
         public ActionResult Delete(int id, Coach coach)
         {

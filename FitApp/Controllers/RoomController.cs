@@ -35,12 +35,14 @@ namespace FitApp.Controllers
         }
 
         // GET: Room/Create
+        [Authorize(Roles = "admin")]
         public ActionResult Create()
         {
             return View();
         }
 
         // POST: Room/Create
+        [Authorize(Roles = "admin")]
         [HttpPost]
         public ActionResult Create(Room room)
         {
@@ -60,6 +62,7 @@ namespace FitApp.Controllers
         }
 
         // GET: Room/Edit/5
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int id)
         {
             using (ApplicationDbContext db = new ApplicationDbContext())
@@ -74,6 +77,7 @@ namespace FitApp.Controllers
         }
 
         // POST: Room/Edit/5
+        [Authorize(Roles = "admin")]
         [HttpPost]
         public ActionResult Edit(int id, Room room)
         {
@@ -93,6 +97,7 @@ namespace FitApp.Controllers
         }
 
         // GET: Room/Delete/5
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int id)
         {
             using (ApplicationDbContext db = new ApplicationDbContext())
@@ -106,6 +111,7 @@ namespace FitApp.Controllers
         }
 
         // POST: Room/Delete/5
+        [Authorize(Roles = "admin")]
         [HttpPost]
         public ActionResult Delete(int id, Room room)
         {

@@ -35,14 +35,16 @@ namespace FitApp.Controllers
         }
 
         // GET: Activity/Create
+        [Authorize(Roles = "admin")]
         public ActionResult Create()
         {
             return View();
         }
 
         // POST: Activity/Create
+        [Authorize(Roles = "admin")]
         [HttpPost]
-        public ActionResult Create(Activity activity)
+        public ActionResult Create(CreateActivityViewModels activity)
         {
             if (!ModelState.IsValid)
             {
@@ -51,15 +53,25 @@ namespace FitApp.Controllers
             else
             {
                 ApplicationDbContext db = new ApplicationDbContext();
-                db.Activities.Add(activity);
+                var model = new CreateActivityViewModels
+                {
+                    Rooms = db.Rooms.ToList(),
+                    Coachs = db.Coachs.ToList(),
+                    Name = activity.Name,
+                    Start_time = activity.Start_time,
+                    End_time = activity.End_time
+                };
+
+                //db.Activities.Add(activity);
                 db.SaveChanges();
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", model);
             }
 
         }
 
         // GET: Activity/Edit/5
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int id)
         {
             using (ApplicationDbContext db = new ApplicationDbContext())
@@ -74,6 +86,7 @@ namespace FitApp.Controllers
         }
 
         // POST: Activity/Edit/5
+        [Authorize(Roles = "admin")]
         [HttpPost]
         public ActionResult Edit(int id, Activity activity)
         {
@@ -92,6 +105,7 @@ namespace FitApp.Controllers
         }
 
         // GET: Activity/Delete/5
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int id)
         {
             using (ApplicationDbContext db = new ApplicationDbContext())
@@ -105,6 +119,7 @@ namespace FitApp.Controllers
         }
 
         // POST: Activity/Delete/5
+        [Authorize(Roles = "admin")]
         [HttpPost]
         public ActionResult Delete(int id, Activity activity)
         {

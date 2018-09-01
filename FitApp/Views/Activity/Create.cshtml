@@ -1,4 +1,4 @@
-﻿@model FitApp.Models.Activity
+﻿@model FitApp.Models.CreateActivityViewModels
 
 @{
     ViewBag.Title = "Create";
@@ -38,19 +38,25 @@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.RoomId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.RoomId, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.RoomId, "", new { @class = "text-danger" })
+        <div class="dropdown">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                 Room
+            </button>
+            <div class="dropdown-menu">
+                @foreach (var room in Model.Rooms)
+                {
+                <a class="dropdown-item" href="#">room</a>
+                }
             </div>
-        </div>
+        </div> 
+
+        
 
         <div class="form-group">
-            @Html.LabelFor(model => model.CoachId, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Coachs, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CoachId, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CoachId, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Coachs, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Coachs, "", new { @class = "text-danger" })
             </div>
         </div>
 

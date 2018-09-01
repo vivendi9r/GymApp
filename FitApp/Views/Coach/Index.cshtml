@@ -5,10 +5,12 @@
 }
 
 <h2>Index</h2>
-
+@if(User.IsInRole("admin"))
+{
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+}
 <table class="table">
     <tr>
         <th>
@@ -25,9 +27,16 @@
         </td>
        
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.CoachId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.CoachId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.CoachId })
+            @if (User.IsInRole("admin"))
+            {
+                @Html.ActionLink("Edit", "Edit", new { id = item.CoachId }) 
+            }
+            |
+                @Html.ActionLink("Details", "Details", new { id=item.CoachId }) |
+            @if (User.IsInRole("admin"))
+            {
+                @Html.ActionLink("Delete", "Delete", new { id = item.CoachId })
+            }
         </td>
     </tr>
 }
