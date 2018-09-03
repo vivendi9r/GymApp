@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
 namespace FitApp.Models
 {
-    public class CreateActivityViewModels
+    public class EditActivityFormViewModel
     {
+        public int ActivityId { get; set; }
+
         [DisplayName("Nazwa Aktywności")]
         public string Name { get; set; }
         [DisplayName("Data Rozpoczęcia")]

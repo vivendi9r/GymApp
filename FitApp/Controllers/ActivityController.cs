@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -35,16 +36,23 @@ namespace FitApp.Controllers
         }
 
         // GET: Activity/Create
-        [Authorize(Roles = "admin")]
         public ActionResult Create()
         {
-            return View();
-        }
+            using (var db = new ApplicationDbContext()) {
+                var model = new CreateActivityViewModels
+                {
+                    Rooms = db.Rooms.Select(x => new SelectListItem { Text = x.Name, Value = x.RoomId.ToString() }).ToList(),
+                    Coachs = db.Coachs.Select(x => new SelectListItem { Text = x.Name, Value = x.CoachId.ToString() }).ToList()
+                };
+                     return View(model);
+            }
+         }
+               
+        
 
         // POST: Activity/Create
-        [Authorize(Roles = "admin")]
         [HttpPost]
-        public ActionResult Create(CreateActivityViewModels activity)
+        public async Task<ActionResult> Create(CreateActivityViewModels activity)
         {
             if (!ModelState.IsValid)
             {
@@ -52,43 +60,43 @@ namespace FitApp.Controllers
             }
             else
             {
-                ApplicationDbContext db = new ApplicationDbContext();
-                var model = new CreateActivityViewModels
+                using (var db = new ApplicationDbContext())
                 {
-                    Rooms = db.Rooms.ToList(),
-                    Coachs = db.Coachs.ToList(),
-                    Name = activity.Name,
-                    Start_time = activity.Start_time,
-                    End_time = activity.End_time
-                };
 
-                //db.Activities.Add(activity);
-                db.SaveChanges();
+                    var mapper = Automapper.GetInstance();
+                    var model =  mapper.Map<Activity>(activity);
+ 
 
-                return RedirectToAction("Index", model);
+
+                    db.Activities.Add(model);
+                    await db.SaveChangesAsync();
+                }
+                return RedirectToAction("Index", activity);
             }
 
         }
 
         // GET: Activity/Edit/5
-        [Authorize(Roles = "admin")]
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> Edit(int id)
         {
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
-                var activity = db.Activities.Find(id);
+                var activity =  await db.Activities.FindAsync(id);
                 if (activity == null)
                     return View("Error");
-                return View(activity);
+                var mapper = Automapper.GetInstance();
+                var model = mapper.Map<EditActivityFormViewModel>(activity);
+                 model.Rooms  = await db.Rooms.Select(x => new SelectListItem { Text = x.Name, Value = x.RoomId.ToString() }).ToListAsync();
+                 model.Coachs = await db.Coachs.Select(x => new SelectListItem { Text = x.Name, Value = x.CoachId.ToString() }).ToListAsync();
+                return View(model);
 
             }
             
         }
 
         // POST: Activity/Edit/5
-        [Authorize(Roles = "admin")]
         [HttpPost]
-        public ActionResult Edit(int id, Activity activity)
+        public async Task<ActionResult> Edit(int id, EditActivityFormViewModel activity)
         {
             if (!ModelState.IsValid)
             {
@@ -96,10 +104,13 @@ namespace FitApp.Controllers
             }
             else
             {
-                ApplicationDbContext db = new ApplicationDbContext();
-                db.Entry(activity).State = EntityState.Modified;
-                db.SaveChanges();
-
+                using (var db = new ApplicationDbContext())
+                {
+                    var mapper = Automapper.GetInstance();
+                    var model = mapper.Map<Activity>(activity);
+                    db.Entry(model).State = EntityState.Modified;
+                    await db.SaveChangesAsync();
+                }
                 return RedirectToAction("Index");
             }
         }
