@@ -1,10 +1,11 @@
 ﻿@model IEnumerable<FitApp.Models.Coach>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Trenerzy";
 }
 
-<h2>Index</h2>
+<h2>Trenerzy</h2>
+
 @if(User.IsInRole("admin"))
 {
 <p>
