@@ -36,6 +36,31 @@ namespace FitApp.Controllers
             return View();
         }
 
+        public ActionResult BMR(BMR bmr)
+        {
+            return View();
+        }
+
+        
+        public ActionResult BMI()
+        {
+            //var yourBMI = 0;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult BMI(BMI bmi)
+        {
+            var yourBMI = (bmi.Weight / ((bmi.Height/100) * (bmi.Height/100)));
+            ViewBag.Message = yourBMI;
+            return View("YourBMI");
+        }
+
+        public ActionResult ONERM(ONERM onerm)
+        {
+            return View();
+        }
+
         public ActionResult Edukacja()
         {
             return View();

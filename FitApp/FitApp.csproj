@@ -227,11 +227,14 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Activity.cs" />
     <Compile Include="Models\ActivityUser.cs" />
+    <Compile Include="Models\BMI.cs" />
+    <Compile Include="Models\BMR.cs" />
     <Compile Include="Models\Coach.cs" />
     <Compile Include="Models\CreateActivityViewModels.cs" />
     <Compile Include="Models\EditActivityFormViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ONERM.cs" />
     <Compile Include="Models\Room.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -363,6 +366,10 @@
     <Content Include="Views\Coach\Details.cshtml" />
     <Content Include="Views\Activity\Index.cshtml" />
     <Content Include="Views\Activity\Create.cshtml" />
+    <Content Include="Views\Home\BMR.cshtml" />
+    <Content Include="Views\Home\BMI.cshtml" />
+    <Content Include="Views\Home\ONERM.cshtml" />
+    <Content Include="Views\Home\YourBMI.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

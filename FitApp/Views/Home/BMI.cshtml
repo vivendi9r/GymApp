@@ -1,0 +1,21 @@
+﻿@model FitApp.Models.BMI
+
+@{
+    ViewBag.Title = "BMI";
+}
+
+<h2>Oblicz swoje BMI</h2>
+
+<form method="post">
+
+<label for="weight">Waga:</label>
+<input type="number" name="weight" id="weight"/>
+
+<label for="height">Wzrost:</label>
+<input type="number" name="height" id="height" />
+
+<input type="submit" value="Oblicz" />
+
+</form>
+
+<text>@Model</text>
