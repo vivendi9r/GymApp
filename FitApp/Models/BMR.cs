@@ -7,8 +7,8 @@ namespace FitApp.Models
 {
     public class BMR
     {
-        public int Weight { get; set; }
-        public int Activity { get; set; }
+        public float Weight { get; set; }
+        public float Activity { get; set; }
         public bool SexMale { get; set; }
     }
 }

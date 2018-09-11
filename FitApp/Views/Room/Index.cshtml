@@ -9,7 +9,7 @@
 @if (User.IsInRole("admin"))
 {
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Dodaj nową", "Create")
 </p>
 }
 <table class="table">
@@ -28,13 +28,13 @@
         <td>
             @if (User.IsInRole("admin"))
             {
-                @Html.ActionLink("Edit", "Edit", new { id=item.RoomId }) 
+                @Html.ActionLink("Edytuj", "Edit", new { id=item.RoomId }) 
             }
             |
-            @Html.ActionLink("Details", "Details", new { id=item.RoomId }) |
+            @Html.ActionLink("Szczegóły", "Details", new { id=item.RoomId }) |
             @if (User.IsInRole("admin"))
             {
-            @Html.ActionLink("Delete", "Delete", new { id = item.RoomId })
+            @Html.ActionLink("Usuń", "Delete", new { id = item.RoomId })
             }
         </td>
     </tr>
