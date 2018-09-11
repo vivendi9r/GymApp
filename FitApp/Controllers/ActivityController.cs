@@ -16,7 +16,8 @@ namespace FitApp.Controllers
         {
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
-                var activity = db.Activities.ToList();
+                var activity = db.Activities.ToList().Select(x=>new ActivityViewModel {ActivityId=x.ActivityId ,Name=x.Name, Coach=db.Coachs.Find(x.CoachId).Name,End_time=x.End_time, Start_time=x.Start_time,Room=db.Rooms.Find(x.RoomId).Name}).ToList();
+               
                 return View(activity);
 
             }

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<FitApp.Models.Activity>
+﻿@model IEnumerable<FitApp.Models.ActivityViewModel>
 
 @{
     ViewBag.Title = "Index";
@@ -23,10 +23,10 @@
             @Html.DisplayNameFor(model => model.End_time)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.RoomId)
+            @Html.DisplayNameFor(model => model.Room)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CoachId)
+            @Html.DisplayNameFor(model => model.Coach)
         </th>
         <th></th>
     </tr>
@@ -43,10 +43,10 @@
             @Html.DisplayFor(modelItem => item.End_time)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.RoomId)
+            @Html.DisplayFor(modelItem => item.Room)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.CoachId)
+            @Html.DisplayFor(modelItem => item.Coach)
         </td>
         <td>
             @if (User.IsInRole("admin"))
