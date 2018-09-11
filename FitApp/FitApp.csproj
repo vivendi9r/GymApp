@@ -370,6 +370,8 @@
     <Content Include="Views\Home\BMI.cshtml" />
     <Content Include="Views\Home\ONERM.cshtml" />
     <Content Include="Views\Home\YourBMI.cshtml" />
+    <Content Include="Views\Home\YourONERM.cshtml" />
+    <Content Include="Views\Home\YourBMR.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

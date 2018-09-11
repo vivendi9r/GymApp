@@ -36,15 +36,25 @@ namespace FitApp.Controllers
             return View();
         }
 
-        public ActionResult BMR(BMR bmr)
+        public ActionResult BMR()
         {
             return View();
         }
 
-        
+        [HttpPost]
+        public ActionResult BMR(BMR bmr)
+        {
+            var sex = 0.9;
+            if (bmr.SexMale)
+                sex = 1.0;
+            var yourBMR = 24 * bmr.Weight * bmr.Activity/100 * sex;
+            ViewBag.Message = yourBMR;
+            return View("YourBMR");
+        }
+
         public ActionResult BMI()
         {
-            //var yourBMI = 0;
+            
             return View();
         }
 
@@ -56,9 +66,19 @@ namespace FitApp.Controllers
             return View("YourBMI");
         }
 
-        public ActionResult ONERM(ONERM onerm)
+        public ActionResult ONERM()
         {
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult ONERM(ONERM onerm)
+        {
+            //(weight*reps*0,0333) +weight
+           
+            var oneRepMax = (onerm.Weight * onerm.Reps * 0.0333)+ onerm.Weight;
+            ViewBag.Message = oneRepMax;
+            return View("YourONERM");
         }
 
         public ActionResult Edukacja()

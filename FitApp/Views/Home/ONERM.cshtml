@@ -1,8 +1,18 @@
-﻿
-@{
-    ViewBag.Title = "Edukacja";
+﻿@{
+    ViewBag.Title = "One Rep Max";
 }
 
-<h2>Edukacja</h2>
+<h2>Oblicz jedno maksymalne powtorzenie</h2>
 
+<br />
+<form method="post">
 
+    <label for="weight">Obciążenie:</label>
+    <input type="number" name="weight" id="weight" />
+
+    <label for="reps">Ilość wykonanych powtorzeń[1-10]:</label>
+    <input type="number" name="reps" id="reps" />
+
+    <input type="submit" value="Oblicz" />
+
+</form>

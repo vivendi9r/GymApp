@@ -1,7 +1,29 @@
 ﻿
 @{
-    ViewBag.Title = "Edukacja";
+    ViewBag.Title = "BMR";
 }
 
-<h2>Edukacja</h2>
+<h2>Oblicz swoje zapotrzebowanie kaloryczne:</h2>
+<h4>Wypełniając swoją dzienną aktywność zwróć uwagę na poniższy schemat:</h4>
+<h4>100- Brak aktywności(siedząca praca + brak ćwiczeń)</h4>
+<h4>115 - Mała aktywność(siedząca praca + ćwiczenia 1-3/tydzień)</h4>
+<h4>125 - Średnia aktywność(siedząca praca + ćwiczenia 3-5/tydzień)</h4>
+<h4>140 - Duża aktywność(praca fizyczna lub codzienne ćwiczenia)</h4>
+<h4>150 - Bardzo duża aktywność(praca fizyczna + ćwiczenia)</h4>
+
+<br />
+<form method="post">
+
+    <label for="weight">Waga:</label>
+    <input type="number" name="weight" id="weight" />
+
+    <label for="activity">Aktywność fizyczna w ciągu dnia[1.0-1.5]:</label>
+    <input type="number" name="activity" id="activity" />
+
+    <label for="sexmale">Mężczyzna?:</label>
+    <input type="checkbox" name="sexmale" id="sexmale" />
+
+    <input type="submit" value="Oblicz" />
+
+</form>
 
