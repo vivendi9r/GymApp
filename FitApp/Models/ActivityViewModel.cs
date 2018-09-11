@@ -14,5 +14,10 @@ namespace FitApp.Models
         public DateTime End_time { get; set; }
         public string Room { get; set; }
         public string Coach { get; set; }
+        public int AvailablePlaces { get; set; }
+        public int OccupiedPlaces { get; set; }
+        public bool Participant { get; set; }
+        public Guid UserId { get; set; }
+
     }
 }

@@ -1,4 +1,5 @@
 ﻿using FitApp.Models;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -9,14 +10,32 @@ using System.Web.Mvc;
 
 namespace FitApp.Controllers
 {
+    [Authorize]
     public class ActivityController : Controller
     {
         // GET: Activity
+        
         public ActionResult Index()
         {
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
-                var activity = db.Activities.ToList().Select(x=>new ActivityViewModel {ActivityId=x.ActivityId ,Name=x.Name, Coach=db.Coachs.Find(x.CoachId).Name,End_time=x.End_time, Start_time=x.Start_time,Room=db.Rooms.Find(x.RoomId).Name}).ToList();
+                var userId = Guid.Parse(User.Identity.GetUserId());
+                var activity = db.Activities.ToList().Select(x => new ActivityViewModel
+                {
+                    ActivityId = x.ActivityId,
+                    Name = x.Name,
+                    Coach = db.Coachs.Find(x.CoachId).Name,
+                    End_time = x.End_time,
+                    Start_time = x.Start_time,
+                    Room = db.Rooms.Find(x.RoomId).Name,
+                    OccupiedPlaces = db.ActivitiesUsers.Where(y => y.ActivityId == x.ActivityId).Count()
+                ,
+                    AvailablePlaces = 20,
+                    Participant = db.ActivitiesUsers.Any(y => y.UserId == userId && y.ActivityId == x.ActivityId),
+                    UserId = userId
+                    
+                }).ToList();
+               
                
                 return View(activity);
 
@@ -48,8 +67,30 @@ namespace FitApp.Controllers
                      return View(model);
             }
          }
-               
-        
+
+        [HttpPost]
+        public async Task<ActionResult> Involved(int  ActivityId, Guid UserId)
+        {
+            using(var context = new ApplicationDbContext())
+            {
+                context.ActivitiesUsers.Add(new ActivityUser { ActivityId = ActivityId, UserId = UserId });
+                await context.SaveChangesAsync();
+            }
+            return RedirectToAction("index");
+        }
+        [HttpPost]
+        public async Task<ActionResult> NotInvolved(int ActivityId, Guid UserId)
+        {
+            using (var context = new ApplicationDbContext())
+            {
+                var model = context.ActivitiesUsers.Where(x => x.ActivityId == ActivityId && x.UserId == UserId).First();
+            context.ActivitiesUsers.Remove(model);
+                await context.SaveChangesAsync();
+            }
+            return RedirectToAction("index");
+
+        }
+
 
         // POST: Activity/Create
         [HttpPost]

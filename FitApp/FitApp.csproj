@@ -223,6 +223,10 @@
     <Compile Include="Migrations\201808271545148_add prop to coach.Designer.cs">
       <DependentUpon>201808271545148_add prop to coach.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809111636408_UserActivity.cs" />
+    <Compile Include="Migrations\201809111636408_UserActivity.Designer.cs">
+      <DependentUpon>201809111636408_UserActivity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Activity.cs" />
@@ -394,6 +398,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808271545148_add prop to coach.resx">
       <DependentUpon>201808271545148_add prop to coach.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809111636408_UserActivity.resx">
+      <DependentUpon>201809111636408_UserActivity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
