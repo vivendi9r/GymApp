@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -40,6 +42,49 @@ namespace FitApp.Controllers
                 return View(activity);
 
             }
+        }
+
+        
+        public ActionResult SendEmail()
+        {
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var receiver = User.Identity.GetUserName();
+            var subject = "FitApp - Potwierdzenie zapisów na zajęcia";
+            var message = "Witaj! Nie zapomnij o swoich zajęciach! Czekamy na Ciebie!"; 
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var senderEmail = new MailAddress("vivendi9r@gmail.com", "Barczik");
+                    var receiverEmail = new MailAddress(receiver, "Receiver");
+                    var password = "Your Email Password here";
+                    var sub = subject;
+                    var body = message;
+                    var smtp = new SmtpClient
+                    {
+                        Host = "smtp.gmail.com",
+                        Port = 587,
+                        EnableSsl = true,
+                        DeliveryMethod = SmtpDeliveryMethod.Network,
+                        UseDefaultCredentials = false,
+                        Credentials = new NetworkCredential(senderEmail.Address, password)
+                    };
+                    using (var mess = new MailMessage(senderEmail, receiverEmail)
+                    {
+                        Subject = subject,
+                        Body = body
+                    })
+                    {
+                        smtp.Send(mess);
+                    }
+                    return View();
+                }
+            }
+            catch (Exception)
+            {
+                ViewBag.Error = "Some Error";
+            }
+            return View();
         }
 
         // GET: Activity/Details/5
