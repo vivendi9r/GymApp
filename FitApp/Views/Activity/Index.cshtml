@@ -14,22 +14,22 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+			@Html.ActionLink("Nazwa Treningu", "Index", new { sortby = "name" })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Start_time)
+            @Html.ActionLink("Data rozpoczęcia", "Index", new { sortby = "start_time" })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.End_time)
+			@Html.ActionLink("Data zakończenia", "Index", new { sortby = "end_time" })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Room)
+			@Html.ActionLink("Sala", "Index", new { sortby = "room" })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Coach)
+			@Html.ActionLink("Trener", "Index", new { sortby = "coach" })
         </th>
 		<th>
-			@Html.DisplayNameFor(model => model.Coach)
+			@Html.ActionLink("Dostępne miejsca", "Index", new { sortby = "occupied_place" })
 		</th>
         <th></th>
     </tr>
