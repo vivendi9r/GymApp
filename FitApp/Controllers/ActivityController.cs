@@ -97,7 +97,7 @@ namespace FitApp.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var senderEmail = new MailAddress("vivendi9r@gmail.com", "Barczik");
+                    var senderEmail = new MailAddress("przemek930010@gmail@gmail.com", "Barczik");
                     var receiverEmail = new MailAddress(receiver, "Receiver");
                     var password = "Your Email Password here";
                     var sub = subject;
@@ -156,12 +156,29 @@ namespace FitApp.Controllers
          }
 
         [HttpPost]
-        public async Task<ActionResult> Involved(int  ActivityId, Guid UserId)
+        
+        public async Task<ActionResult> Involved(int ActivityId, Guid UserId)
         {
-            using(var context = new ApplicationDbContext())
+            using (var context = new ApplicationDbContext())
             {
+                var model = await context.Activities.FindAsync(ActivityId);
+                var emailModel = new ActivityEmailMessageViewModel()
+                {
+                    Name = model.Name,
+                    Start_time = model.Start_time,
+                    End_time = model.End_time,
+                    Coach = context.Coachs.Find(model.CoachId).Name,
+                    Room = context.Rooms.Find(model.RoomId).Name
+                };
+                
+                string subject = $"Przypomnienie zajęcia z {emailModel.Name}";
+                string body = $"{emailModel.Name} {emailModel.Start_time} {emailModel.End_time} {emailModel.Coach} {emailModel.Room}";
+
+            
                 context.ActivitiesUsers.Add(new ActivityUser { ActivityId = ActivityId, UserId = UserId });
                 await context.SaveChangesAsync();
+                EmailService serivce = new EmailService();
+                await serivce.SendAsync(new IdentityMessage { Destination = User.Identity.Name, Subject = subject,Body=body});
             }
             return RedirectToAction("index");
         }

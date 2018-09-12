@@ -11,15 +11,39 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using FitApp.Models;
+using System.Net.Mail;
+using System.Net;
+using System.Net.Configuration;
+using System.Configuration;
 
 namespace FitApp
 {
     public class EmailService : IIdentityMessageService
     {
-        public Task SendAsync(IdentityMessage message)
+        public async Task SendAsync(IdentityMessage message)
         {
-            // Dołącz tutaj usługę poczty e-mail, aby wysłać wiadomość e-mail.
-            return Task.FromResult(0);
+            SmtpSection secObj = (SmtpSection)ConfigurationManager.GetSection("system.net/mailSettings/smtp");
+            var senderEmail = new MailAddress(secObj.From, "Barczik");
+            var receiverEmail = new MailAddress(message.Destination, "Receiver");
+
+            var smtp = new SmtpClient
+            {
+                Host = secObj.Network.Host,
+                Port = secObj.Network.Port,
+                EnableSsl = secObj.Network.EnableSsl,
+                DeliveryMethod = secObj.DeliveryMethod,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(secObj.Network.UserName, secObj.Network.Password)
+            };
+            
+            {
+                 await smtp.SendMailAsync(new MailMessage(senderEmail, receiverEmail)
+                {
+                    Subject = message.Subject,
+                    Body = message.Body
+                });
+            }
+            
         }
     }
 
