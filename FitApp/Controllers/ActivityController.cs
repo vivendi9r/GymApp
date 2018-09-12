@@ -15,7 +15,7 @@ namespace FitApp.Controllers
     {
         // GET: Activity
         
-        public ActionResult Index()
+        public ActionResult Index(string sortby = "")
         {
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
@@ -35,7 +35,49 @@ namespace FitApp.Controllers
                     UserId = userId
                     
                 }).ToList();
-               
+                switch (sortby.ToLower())
+                {
+                    case "room":
+                        activity = activity.OrderBy(x => x.Room).ToList();
+                        break;
+                    case "room_desc":
+                        activity = activity.OrderByDescending(x => x.Room).ToList();
+                        break;
+                    case "coach":
+                        activity = activity.OrderBy(x => x.Coach).ToList();
+                        break;
+                    case "coach_desc":
+                        activity = activity.OrderByDescending(x => x.Coach).ToList();
+                        break;
+                    case "end_time":
+                        activity = activity.OrderBy(x => x.End_time).ToList();
+                        break;
+                    case "end_time_desc":
+                        activity = activity.OrderByDescending(x => x.End_time).ToList();
+                        break;
+                    case "start_time":
+                        activity = activity.OrderBy(x => x.Start_time).ToList();
+                        break;
+                    case "start_time_desc":
+                        activity = activity.OrderByDescending(x => x.Start_time).ToList();
+                        break;
+                    case "name":
+                        activity = activity.OrderBy(x => x.Name).ToList();
+                        break;
+                    case "name_desc":
+                        activity = activity.OrderByDescending(x => x.Name).ToList();
+                        break;
+                    case "occupied_place":
+                        activity = activity.OrderBy(x => x.OccupiedPlaces).ToList();
+                        break;
+
+
+
+                    default:
+                        activity = activity.OrderBy(x => x.Name).ToList();
+                        break;
+                }
+                
                
                 return View(activity);
 
